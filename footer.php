@@ -27,12 +27,24 @@
 		
 		<!-- scripts are now optimized via Modernizr.load -->	
 		<script src="<?php echo get_template_directory_uri(); ?>/library/js/scripts.js"></script>
-		
+		<script src="<?php echo get_template_directory_uri(); ?>/library/js/libs/bootstrap-scrollspy.js"></script>
+		<script src="<?php echo get_template_directory_uri(); ?>/library/js/libs/application.js"></script>
+		<script src="<?php echo get_template_directory_uri(); ?>/library/js/libs/bootstrap-tooltip.js"></script>
+		<script src="<?php echo get_template_directory_uri(); ?>/library/js/libs/bootstrap-transition.js"></script>
+		<script src="<?php echo get_template_directory_uri(); ?>/library/js/libs/bootstrap-tab.js"></script>
+		<script src="<?php echo get_template_directory_uri(); ?>/library/js/libs/bootstrap-popover.js"></script>
+
 		<!--[if lt IE 7 ]>
   			<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
   			<script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
 		<![endif]-->
-		
+		<script>
+		$(document).ready(function() 
+ 		   { 
+ 		       $("#applications").tablesorter(); 
+ 		   } 
+		); 
+		</script>
 		<?php wp_footer(); // js scripts are inserted using this function ?>
 
 	</body>

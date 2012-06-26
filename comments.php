@@ -66,7 +66,7 @@ The comments page for Bones
 
 <?php if ( comments_open() ) : ?>
 
-<section id="respond" class="respond-form">
+<section id="respond" class="respond-form well">
 
 	<h3 id="comment-form-title"><?php comment_form_title( __("Leave a Reply","bonestheme"), __("Leave a Reply to","bonestheme") . ' %s' ); ?></h3>
 
@@ -81,7 +81,7 @@ The comments page for Bones
 	<?php else : ?>
 
 	<form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" class="form-vertical" id="commentform">
-
+    <div id="commenter-info">
 	<?php if ( is_user_logged_in() ) : ?>
 
 	<p class="comments-logged-in-as"><?php _e("Logged in as","bonestheme"); ?> <a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>. <a href="<?php echo wp_logout_url(get_permalink()); ?>" title="<?php _e("Log out of this account","bonestheme"); ?>"><?php _e("Log out","bonestheme"); ?> &raquo;</a></p>
@@ -106,17 +106,6 @@ The comments page for Bones
 			  <div class="input-prepend">
 			  	<span class="add-on"><i class="icon-envelope"></i></span>
 			  	<input type="email" name="email" id="email" value="<?php echo esc_attr($comment_author_email); ?>" placeholder="<?php _e("Your Email","bonestheme"); ?>" tabindex="2" <?php if ($req) echo "aria-required='true'"; ?> />
-			  	<span class="help-inline">(<?php _e("will not be published","bonestheme"); ?>)</span>
-			  </div>
-		  	</div>
-		</li>
-		
-		<li>
-			<div class="control-group">
-			  <label for="url"><?php _e("Website","bonestheme"); ?></label>
-			  <div class="input-prepend">
-			  <span class="add-on"><i class="icon-home"></i></span>
-			  	<input type="url" name="url" id="url" value="<?php echo esc_attr($comment_author_url); ?>" placeholder="<?php _e("Your Website","bonestheme"); ?>" tabindex="3" />
 			  </div>
 		  	</div>
 		</li>
@@ -124,15 +113,18 @@ The comments page for Bones
 	</ul>
 
 	<?php endif; ?>
-	
-	<div class="clearfix">
-		<div class="input">
+
+	  <?php if (function_exists('ratings_input_table')) ratings_input_table(); ?>
+</div>
+
+		<div class="input" id="comment-box">
 			<textarea name="comment" id="comment" placeholder="<?php _e("Your Comment Here…","bonestheme"); ?>" tabindex="4"></textarea>
 		</div>
-	</div>
-	
+
+		<div class=".clearfix:after"></div>
+  
 	<div class="form-actions">
-	  <input class="btn btn-primary" name="submit" type="submit" id="submit" tabindex="5" value="<?php _e("Submit Comment","bonestheme"); ?>" />
+	  <input class="btn btn-primary" name="submit" type="submit" id="submit" tabindex="15" value="<?php _e("Submit Comment","bonestheme"); ?>" />
 	  <?php comment_id_fields(); ?>
 	</div>
 	
@@ -141,7 +133,7 @@ The comments page for Bones
 		do_action('comment_form()', $post->ID); 
 	
 	?>
-	
+
 	</form>
 	
 	<?php endif; // If registration required and not logged in ?>

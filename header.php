@@ -10,7 +10,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		
-		<title><?php wp_title('', true, 'right'); ?></title>
+		<title><?php bloginfo('name'); ?> | <?php is_home() ? bloginfo('description') : wp_title(''); ?></title>
 				
 		<meta name="viewport" content="width=device-width; initial-scale=1.0">
 		
@@ -25,13 +25,16 @@
 		<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/library/images/icons/l/apple-touch-icon.png">
 		<!-- For everything else -->
 		<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/favicon.ico">
-		
+				<link rel="icon" type="image/ico" href="http://codeforamerica.org/accelerator/images/favicon.ico"/>
+
 		<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script>window.jQuery || document.write(unescape('%3Cscript src="<?php echo get_template_directory_uri(); ?>/library/js/libs/jquery-1.7.1.min.js"%3E%3C/script%3E'))</script>
 		
 		<script src="<?php echo get_template_directory_uri(); ?>/library/js/modernizr.full.min.js"></script>
-		
+		<script src="<?php echo get_template_directory_uri(); ?>/library/js/jquery.tablesorter.js"></script>
+		<script src="<?php echo get_template_directory_uri(); ?>/library/js/jquery.metadata.js"></script>
+
 		<!-- media-queries.js (fallback) -->
 		<!--[if lt IE 9]>
 			<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>			
@@ -49,6 +52,8 @@
 		<!-- end of wordpress head -->
 		
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/bootstrap.min.css">
+		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/docs.css">
+		
 		
 		<?php
 			$theme_options_styles = '';
@@ -210,13 +215,12 @@
 				}
 				else {
 		?>
-			<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/admin/themes/<?php echo $bootstrap_theme; ?>.css">
 		<?php
 				}
 			}
 		?>
+		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/spaceship.css">
 		
-		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/bootstrap-responsive.min.css">
 		<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
 		
 		<?php 
@@ -227,10 +231,12 @@
 			global $user_level; 
 		
 		?>
-				
+    		
+				<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/bootstrap-responsive.css">
+  			
 	</head>
 	
-	<body <?php body_class(); ?>>
+	<body <?php body_class(); ?>  data-spy="scroll" data-target=".nav" data-offset="100">
 				
 		<header role="banner">
 		
@@ -240,7 +246,7 @@
 					<div class="navbar-inner">
 						<div class="container-fluid nav-container">
 							<nav role="navigation">
-								<a class="brand" id="logo" title="<?php echo get_bloginfo('description'); ?>" href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a>
+								<a class="brand" id="logo" title="<?php echo get_bloginfo('description'); ?>" href="<?php echo home_url(); ?>"><img src="<?php echo get_template_directory_uri(); ?>/img/logo.png"></a>
 								
 								<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 							        <span class="icon-bar"></span>

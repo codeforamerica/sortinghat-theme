@@ -8,6 +8,20 @@ just edit things like thumbnail sizes, header images,
 sidebars, comments, ect.
 */
 
+function wp_delete_post_link($link = 'Delete This', $before = '', $after = '', $title="Move this item to the Trash") {
+    global $post;
+    if ( $post->post_type == 'page' ) {
+        if ( !current_user_can( 'edit_page' ) )
+            return;
+    } else {
+        if ( !current_user_can( 'edit_post' ) )
+            return;
+    }
+    $delLink = wp_nonce_url( site_url() . "/wp-admin/post.php?action=trash&post=" . $post->ID, 'trash-' . $post->post_type . '_' . $post->ID);
+    $link = '<a href="' . $delLink . '" onclick="javascript:if(!confirm(\'Are you sure you want to move this item to trash?\')) return false;" title="'.$title.'" />'.$link."</a>";
+    return $before . $link . $after;
+}
+
 // Get Bones Core Up & Running!
 require_once('library/bones.php');            // core functions (don't remove)
 require_once('library/plugins.php');          // plugins & extra functions (optional)
@@ -349,6 +363,8 @@ function add_class_attachment_link($html){
     return $html;
 }
 add_filter('wp_get_attachment_link','add_class_attachment_link',10,1);
+
+
 
 // Menu output mods
 class description_walker extends Walker_Nav_Menu
