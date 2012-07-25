@@ -10,7 +10,7 @@
 					<div class="page-header"><h1 class="page-title" itemprop="headline"><?php bloginfo('description'); ?></h1></div>
 				
 					<div class="alert">
-     Start reviewing by selecting a startup listed below in either category: early or later stage. But take a look at our <a href="/instructions">criteria & instructions first.</a> 
+					  Please click on REVIEW to the right of the candidate’s name and use the form at the end to provide your feedback. If you’d like to rate candidates with specific skill sets (ie, front end developer, designer, back end developer), please select the skill set on the lower right corner of the screen. <a href="/instructions">Click here</a> to review our recommended selection criteria. 
           </div>
 				
 				</header> <!-- end article header -->
